@@ -1,0 +1,33 @@
+.LeadForm{
+    max-width: 100vw;
+    max-height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.LeadForm form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:50vw;
+
+}
+
+.LeadForm input{
+    width:300px;
+    padding: 5px;
+    font-size: 18px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.LeadForm button{
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.LeadForm button:hover{
+    cursor: pointer;
+}
