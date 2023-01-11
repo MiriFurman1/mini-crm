@@ -53,24 +53,24 @@ app.get("/statuses", (req, res) => {
         }
     });
 });
-app.put('/update', (req, res) => {
+app.put("/update", (req, res) => {
     const { id, name, phone, event_date, email, location, LeadStatus } = req.body;
     try {
-        db.query('UPDATE lead_table SET name = ?, phone = ?,event_date = ?,email = ?,location = ?, LeadStatus=? WHERE id = ?', [name, phone, event_date, email, location, LeadStatus, id]);
-        res.send({ message: 'User updated successfully' });
+        db.query("UPDATE lead_table SET name = ?, phone = ?,event_date = ?,email = ?,location = ?, LeadStatus=? WHERE id = ?", [name, phone, event_date, email, location, LeadStatus, id]);
+        res.send({ message: "User updated successfully" });
     }
     catch (error) {
-        res.status(500).send({ message: 'Error updating user', error });
+        res.status(500).send({ message: "Error updating user", error });
     }
 });
 app.delete(`/delete/:id`, (req, res) => {
     const id = req.params.id;
     try {
-        db.query('DELETE FROM lead_table WHERE ID=?', id);
-        res.send({ message: 'User deleted successfully' });
+        db.query("DELETE FROM lead_table WHERE ID=?", id);
+        res.send({ message: "User deleted successfully" });
     }
     catch (error) {
-        res.status(500).send({ message: 'Error deleting user', error });
+        res.status(500).send({ message: "Error deleting user", error });
     }
 });
 app.listen(port, () => {
