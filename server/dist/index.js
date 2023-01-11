@@ -34,7 +34,7 @@ app.post("/create", (req, res) => {
     });
 });
 app.get("/events", (req, res) => {
-    db.query("SELECT * FROM lead_table", (err, result) => {
+    db.query("select * from minicrm.lead_table INNER JOIN minicrm.lead_status on lead_status.status_id=lead_table.LeadStatus", (err, result) => {
         if (err) {
             console.log(err);
         }
@@ -44,15 +44,14 @@ app.get("/events", (req, res) => {
     });
 });
 app.put('/update', (req, res) => {
-    const id = req.body.id;
-    db.query("UPDATE SET lead_table", (err, result) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(result);
-        }
-    });
+    const { id, name, phone, event_date, email, location } = req.body;
+    try {
+        db.query('UPDATE lead_table SET name = ?, phone = ?,event_date = ?,email = ?,location = ? WHERE id = ?', [name, phone, event_date, email, location, id]);
+        res.send({ message: 'User updated successfully' });
+    }
+    catch (error) {
+        res.status(500).send({ message: 'Error updating user', error });
+    }
 });
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

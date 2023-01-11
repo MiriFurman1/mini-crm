@@ -27,6 +27,35 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
+
+.EditLead{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.EditLead input{
+    padding: 10px;
+    margin: 10px;
+    width:300px;
+    background-color: rgb(85, 85, 84);
+    border-radius: 5px;
+    color: white;
+    border:none;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+}
+
+.EditButtons{
+    width:300px;
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    text-align:center
+}
+.EditButtons button{
+    margin: 0;
+}
 @media (max-width:750px){
     .EventCard{
         width:90vw;
