@@ -1,0 +1,12 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+header {
+    display: flex;
+    background-color: rgb(53, 51, 51);
+}
+header h1{
+    padding: 10px;
+    margin-left: 1vw;
+}

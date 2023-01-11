@@ -24,7 +24,7 @@ app.post("/create", (req, res) => {
     const date = req.body.date;
     const email = req.body.email;
     const location = req.body.location;
-    db.query("INSERT INTO sys.lead_table(name,phone,event_date,email,location) VALUES(?,?,?,?,?)", [name, phone, date, email, location], (err, result) => {
+    db.query("INSERT INTO lead_table(name,phone,event_date,email,location) VALUES(?,?,?,?,?)", [name, phone, date, email, location], (err, result) => {
         if (err) {
             console.log(err);
         }
@@ -33,8 +33,26 @@ app.post("/create", (req, res) => {
         }
     });
 });
-app.get("/", (req, res) => {
-    res.send("Express + TypeScript Server");
+app.get("/events", (req, res) => {
+    db.query("SELECT * FROM lead_table", (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(result);
+        }
+    });
+});
+app.put('/update', (req, res) => {
+    const id = req.body.id;
+    db.query("UPDATE SET lead_table", (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(result);
+        }
+    });
 });
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

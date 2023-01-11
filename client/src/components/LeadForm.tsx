@@ -21,6 +21,11 @@ export default function LeadForm() {
       location: location,
     }).then(()=>{
       console.log("success");
+      setName("")
+      setPhone("")
+      setDate("")
+      setEmail("")
+      setLocation("")
     })
   };
 
@@ -30,6 +35,7 @@ export default function LeadForm() {
         <label>Name:</label>
         <input
           type="text"
+          value={name}
           onChange={(e) => {
             setName(e.target.value);
           }}
@@ -37,6 +43,7 @@ export default function LeadForm() {
         <label>Phone:</label>
         <input
           type="number"
+          value={phone}
           onChange={(e) => {
             setPhone(e.target.value);
           }}
@@ -44,6 +51,7 @@ export default function LeadForm() {
         <label>Event date:</label>
         <input
           type="date"
+          value={date}
           onChange={(e) => {
             setDate(e.target.value);
           }}
@@ -51,6 +59,7 @@ export default function LeadForm() {
         <label>Email:</label>
         <input
           type="email"
+          value={email}
           onChange={(e) => {
             setEmail(e.target.value);
           }}
@@ -58,6 +67,7 @@ export default function LeadForm() {
         <label>Location:</label>
         <input
           type="text"
+          value={location}
           onChange={(e) => {
             setLocation(e.target.value);
           }}

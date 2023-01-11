@@ -1,4 +1,18 @@
 .App {
   text-align: center;
+  background-color:rgb(61, 59, 59) ;
+  height: 100vh;
 }
 
+.ButtonsDiv{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.ButtonsDiv button{
+  margin: 2vw;
+}
