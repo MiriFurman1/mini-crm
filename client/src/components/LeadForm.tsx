@@ -26,6 +26,8 @@ export default function LeadForm() {
       setDate("")
       setEmail("")
       setLocation("")
+    }).catch((e)=>{
+      console.log(e);
     })
   };
 
@@ -39,6 +41,7 @@ export default function LeadForm() {
           onChange={(e) => {
             setName(e.target.value);
           }}
+          
         />
         <label>Phone:</label>
         <input

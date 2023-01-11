@@ -12,18 +12,27 @@ export default function ShowEvents() {
   const [location, setLocation] = useState<string>("");
   const [id, setId] = useState<number>(0);
   const [status, setStatus] = useState<string>("");
+  const [statuses,setStatuses]=useState<any[]>([])
+
 
   const getEvents = () => {
     axios.get("http://localhost:8000/events").then((response) => {
       setEventsList(response.data);
     });
   };
+  const getStatuses = () => {
+    axios.get("http://localhost:8000/statuses").then((response) => {
+      setStatuses(response.data);
+    });
+  };
 
   useEffect(() => {
     getEvents();
-  }, []);
+    getStatuses ()
+  }, [showEventsList]);
 
   const handleEditClick = (val: any) => {
+    console.log(val);
     setShowEventsList(false)
     setName(val.name)
     setPhone(val.phone)
@@ -31,7 +40,7 @@ export default function ShowEvents() {
     setEmail(val.email)
     setLocation(val.location)
     setId(val.id)
-    setStatus(val.status)
+    setStatus(val.status_id)
   };
 
   const handleSubmitEdit=()=>{
@@ -41,15 +50,23 @@ export default function ShowEvents() {
       phone:phone,
       event_date:date,
       email:email,
-      location:location
+      location:location,
+      LeadStatus:status
+      
+      
     })
     .then((response)=>{
       setShowEventsList(true)
     })
 
-    
   }
 
+  const handleDelete=()=>{
+    axios.delete(`http://localhost:8000/delete/${id}`)
+    .then((response)=>{
+      window.location.reload()
+    })
+  }
 
   return (
     <div className="ShowEvents">
@@ -58,7 +75,6 @@ export default function ShowEvents() {
           <div className="EventCard">
             <p> {val.id} </p>
             <p>{val.name}</p>
-            <p>{val.event_date}</p>
             <p>{val.status_name}</p>
             <button
               onClick={() => {
@@ -113,9 +129,15 @@ export default function ShowEvents() {
             setLocation(e.target.value);
           }}
         />
+        <label>Status</label>
+        <select value={status} onChange={(e)=>setStatus(e.target.value)}>
+          {statuses.map((status)=>{
+            return <option value={status.status_id} > {status.status_name}</option>
+          })}
+        </select>
         <div className="EditButtons">
         <button onClick={()=>{setShowEventsList(true)}}>Cancel</button>
-        <button>Delete</button>
+        <button onClick={handleDelete}>Delete</button>
         <button onClick={handleSubmitEdit}>Submit</button>
         </div>
       </div>

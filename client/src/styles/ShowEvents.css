@@ -45,8 +45,16 @@
     border:none;
 box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
 }
+.EditLead select {
+    padding: 10px;
+    margin: 10px;
+    width:300px;
+    background-color: rgb(85, 85, 84);
+    color: white;
+}
 
 .EditButtons{
+    margin-top: 3vh;
     width:300px;
     display: flex;
     justify-content: space-around;
